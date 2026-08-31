@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Page title</title>
+</head>
+<body bgcolor="#008080" text="#000000" link="#0000ff" vlink="#8080ff" alink="#ff0000">
+
+<p align="center"><input type="button" id="btnPrev" value="<< Previous" onclick="Prev();"> <input type="button" id="bntPlay" value="Play - Stop" onclick="Play()"> <input type="button" id="btnNext" value="  Next >>  " onclick="Next();"></p>
+
+<p align="center"><img id="_Ath_Slide" onload="OnImgLoad()"> </p>
+
+<p align="center"><b>Description:</b> <SPAN id="_Ath_FileName"> </SPAN> <br>
+<b>Number of Pictures: <SPAN id="_Ath_Img_X"></SPAN> of <SPAN id="_Ath_Img_N"></SPAN></b></p>
+
+<p align="center">
+
+<script language="JavaScript1.2">
+
+/*
+Interactive Image slideshow with text description
+By Christian Carlessi Salvadó (cocolinks@c.net.gt). Keep this notice intact.
+Visit http://www.dynamicdrive.com for script
+*/
+
+
+g_fPlayMode = 0;
+g_iimg = -1;
+g_imax = 0;
+g_ImageTable = new Array();
+
+function ChangeImage(fFwd)
+{
+if (fFwd)
+{
+if (++g_iimg==g_imax)
+g_iimg=0;
+}
+else
+{
+if (g_iimg==0)
+g_iimg=g_imax;
+g_iimg--;
+}
+Update();
+}
+
+function getobject(obj){
+if (document.getElementById)
+return document.getElementById(obj)
+else if (document.all)
+return document.all[obj]
+}
+
+function Update(){
+getobject("_Ath_Slide").src = g_ImageTable[g_iimg][0];
+getobject("_Ath_FileName").innerHTML = g_ImageTable[g_iimg][1];
+getobject("_Ath_Img_X").innerHTML = g_iimg + 1;
+getobject("_Ath_Img_N").innerHTML = g_imax;
+}
+
+
+function Play()
+{
+g_fPlayMode = !g_fPlayMode;
+if (g_fPlayMode)
+{
+getobject("btnPrev").disabled = getobject("btnNext").disabled = true;
+Next();
+}
+else 
+{
+getobject("btnPrev").disabled = getobject("btnNext").disabled = false;
+
+}
+}
+function OnImgLoad()
+{
+if (g_fPlayMode)
+window.setTimeout("Tick()", g_dwTimeOutSec*1000);
+}
+function Tick() 
+{
+if (g_fPlayMode)
+Next();
+}
+function Prev()
+{
+ChangeImage(false);
+}
+function Next()
+{
+ChangeImage(true);
+}
+
+
+////configure below variables/////////////////////////////
+
+//configure the below images and description to your own. 
+g_ImageTable[g_imax++] = new Array ("Kaw12.jpg",  "1990 VoyagerXll.");
+g_ImageTable[g_imax++] = new Array ("Kaw22.jpg", "1990 VoyagerXll.");
+g_ImageTable[g_imax++] = new Array ("Kaw32.jpg", "1990 VoyagerXll.");
+g_ImageTable[g_imax++] = new Array ("Kaw42.jpg", "1990 VoyagerXll.");
+
+//extend the above list as desired
+g_dwTimeOutSec=2
+
+////End configuration/////////////////////////////
+
+if (document.getElementById||document.all)
+window.onload=Play
+
+</script>
+</p>
+
+<p align="center"><font face="Arial" size="-2">Free DHTML scripts provided by<br>
+<a href="http://dynamicdrive.com">Dynamic Drive</a></font></p>
+<p></p>
+<center><a href="index.html">Back</a></center>
+</body>
+</html>
