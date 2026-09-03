@@ -2,6 +2,20 @@
 
 <HTML><HEAD><TITLE>main</TITLE>
 
+ <meta charset="UTF-8">
+    <title>Image and Text Side by Side</title>
+    <style>
+        .image-text-container {
+            display: flex;
+            align-items: right; /* Aligns text vertically with the center of the image */
+            gap: 20px;           /* Controls the space between the image and text */
+        }
+        
+        .image-text-container img {
+            width: 624px;        /* Set your preferred image width */
+            height: auto;
+        }
+    </style>
 
 
 
@@ -13,10 +27,13 @@
 
 <BODY BACKGROUND="" BGCOLOR="#05767C" TEXT="#000000" LINK="#c0c0c0" VLINK="#275852" ALINK="#80ffff">
 
-<p><IMG SRC="fourby.jpg" ALT="" width="624" height="258"><Center> <Font Size="-1" Color="000000"></font></Center><P>
-
- 
-</p>
+  <div class="image-text-container">
+        <img src="fourby.jpg" alt="Description of image">
+        <div>
+            <h2></h2>
+            <P><FONT Face="Arial" Size="+2" Color="#000000" >On these pages, I will have some of <U>my</U> favorite things ,from over the years.</p>
+        </div>
+    </div>
 
 <hr>
 <base target="_top">
