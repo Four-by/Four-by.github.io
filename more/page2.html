@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +7,7 @@
    
     <title>Page 2</title>
 
-  
-   
-	 <style>
+    <style>
         /* Basic Page Styling */
         body {
             font-family: Arial, sans-serif;
@@ -32,6 +31,7 @@
             gap: 20px;
             width: 100%;
             max-width: 1200px;
+            padding: 40px 0; /* Gives visual spacing for cards scaling outwards */
         }
 
         /* Individual Photo Cards */
@@ -41,11 +41,15 @@
             overflow: hidden; /* CRITICAL: This hides the image edges when it expands */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease-in-out;
+            cursor: pointer; /* Visual indicator that the item is clickable */
+            position: relative;
+            z-index: 1;
         }
 
-        /* Zoom Effect on Hover (Card) */
-        .photo-card:hover {
+        /* NEW: Zoom Effect on Click instead of Hover */
+        .photo-card.zoomed {
             transform: scale(1.9);
+            z-index: 10; /* Ensures the zoomed card stays on top of surrounding elements */
         }
 
         /* Image Sizing & Transition */
@@ -57,8 +61,8 @@
             transition: transform 0.3s ease-in-out; /* Smooths the image zoom */
         }
 
-        /* NEW: Zoom Effect on Image when Card is Hovered */
-        .photo-card:hover img {
+        /* NEW: Zoom Effect on Image when Card has the zoomed class */
+        .photo-card.zoomed img {
             transform: scale(1.1); /* Increases image size by 10% */
         }
 
@@ -70,14 +74,9 @@
             text-align: center;
         }
     </style>
-	
-	
-	
 </head>
 
-<BODY BGCOLOR="#92CCF0" TEXT="#000000" LINK="#c0c0c0" VLINK="#275852" ALINK="#80ffff">
-
-
+<body bgcolor="#92CCF0" text="#000000" link="#c0c0c0" vlink="#275852" alink="#80ffff">
 
     <h1>Cars and Trucks from over the years, and a few bikes!</h1>
 
@@ -108,7 +107,7 @@
             <div class="caption">1979 El Camino automatic</div>
         </div>
 
-     <!-- Photo Item 5 -->
+        <!-- Photo Item 5 -->
         <div class="photo-card">
             <img src="78.jpg" alt="Beautiful Mountains">
             <div class="caption">1978 Chev I converted from a long box fleetside</div>
@@ -132,7 +131,7 @@
             <div class="caption">My second BroncoII conversion</div>
         </div>
 
-         <!-- Photo Item 9 -->
+        <!-- Photo Item 9 -->
         <div class="photo-card">
             <img src="br2.jpg" alt="Beautiful Mountains">
             <div class="caption">1989 Bronco II converted to a pickup</div>
@@ -180,8 +179,7 @@
             <div class="caption">1985 GMC 1/2 ton 2wd 350 auto</div>
         </div>
 
-
-          <!-- Photo Item 17 -->
+        <!-- Photo Item 17 -->
         <div class="photo-card">
             <img src="redchev.jpg" alt="Beautiful Mountains">
             <div class="caption">Chevy Stepside 4x4</div>
@@ -200,17 +198,44 @@
         </div>
 
         <!-- Photo Item 20 -->
-        
-		<div class="photo-card">
+        <div class="photo-card">
             <img src="my59.jpg" alt="Green Forest">
             <div class="caption">1959 Ford F100 300ci 6cyl auto 2wd</div>
         </div>
-   </div>
- <P><P><a href="page3.html" target="_top" style="color: red; font-size: 20px;">Go to Page 3</a>
- <P>
- <P><CENTER><FONT SIZE="+2"><a href="Cars and Trucks.html" target="_top">Back</a></FONT></CENTER>
+
+    </div>
+
+    <p><p><a href="page3.html" target="_top" style="color: red; font-size: 20px;">Go to Page 3</a>
+    <p>
+    <p><center><font size="+2"><a href="Cars and Trucks.html" target="_top">Back</a></font></center>
  
- 
- 
+    <!-- JavaScript for click interaction -->
+    <script>
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Prevent the document click listener from firing immediately
+                e.stopPropagation();
+
+                // Close any other zoomed cards first
+                document.querySelectorAll('.photo-card').forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('zoomed');
+                    }
+                });
+                
+                // Toggle zoom on the clicked card
+                this.classList.toggle('zoomed');
+            });
+        });
+
+        // Clicking anywhere else on the page background closes any open card
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.photo-card').forEach(card => {
+                card.removeEventListener('click', card);
+                card.classList.remove('zoomed');
+            });
+        });
+    </script>
+
 </body>
 </html>
