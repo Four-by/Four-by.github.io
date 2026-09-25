@@ -179,6 +179,32 @@
         </div>
     </div>
  <P><P><a href="page2.html" target="_top" style="color: red; font-size: 20px;"> Page 2</a>
-  
+   <!-- JavaScript for click interaction -->
+    <script>
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Prevent the document click listener from firing immediately
+                e.stopPropagation();
+
+                // Close any other zoomed cards first
+                document.querySelectorAll('.photo-card').forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('zoomed');
+                    }
+                });
+                
+                // Toggle zoom on the clicked card
+                this.classList.toggle('zoomed');
+            });
+        });
+
+        // Clicking anywhere else on the page background closes any open card
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.photo-card').forEach(card => {
+                card.removeEventListener('click', card);
+                card.classList.remove('zoomed');
+            });
+        });
+    </script>
 </body>
 </html>
