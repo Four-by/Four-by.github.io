@@ -1,72 +1,87 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 
-<HTML><HEAD><TITLE>Easy Rider</TITLE>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Rider</title>
+    <style>
+        /* Base styles matching your original theme */
+        body {
+            background-color: #05767C;
+            color: #c0c0c0;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        
+        a { color: #c0c0c0; }
+        a:visited { color: #275852; }
+        a:active { color: #80ffff; }
 
+        /* Modern layout container replacing the frameset */
+        .site-container {
+            display: flex;
+            min-height: 100vh;
+        }
 
-<frameset cols="375,*" >
-<frame src="newmenu1.html" name="menu" scrolling="yes">
-<frame src="main.html" name="content" noresize scrolling=yes>
-</frameset> 
+        /* The Menu Container (replaces the menu frame) */
+        .menu-panel {
+            width: 375px;
+            flex-shrink: 0;
+            border-right: 2px solid #275852;
+            box-sizing: border-box;
+        }
 
+        /* The Content Container (replaces the content frame) */
+        .content-panel {
+            flex-grow: 1;
+            box-sizing: border-box;
+        }
 
+        /* Embedded pages scale to fill their containers completely */
+        .embed-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
 
+        /* Responsive Mobile Rules: Stacks panels vertically on small screens */
+        @media (max-width: 768px) {
+            .site-container {
+                flex-direction: column;
+            }
+            .menu-panel {
+                width: 100%;
+                height: 300px; /* Adjust height for the mobile menu area if needed */
+                border-right: none;
+                border-bottom: 2px solid #275852;
+            }
+            .content-panel {
+                height: calc(100vh - 300px); /* Makes content fill the rest of the mobile screen */
+            }
+        }
+    </style>
+</head>
+<body>
 
+    <div class="site-container">
+        <!-- Menu Panel -->
+        <div class="menu-panel">
+            
+            <iframe src="newmenu1.html" name="menu" class="embed-frame"></iframe>	 
+			</div>
+            
+        <!-- Main Content Panel -->
+        <div class="content-panel">
+            <iframe src="main.html" name="content" class="embed-frame"></iframe>
+        </div>
+    </div>
 
-</HEAD>
-
-<BODY BACKGROUND="" BGCOLOR="#05767C" TEXT="#c0c0c0" LINK="#c0c0c0" VLINK="#275852" ALINK="#80ffff">
-
-
-<FONT  ALIGN="left" SIZE="+2" Color="c0c0c0">
-
-<BR>
-
-
-<BR><HR>
-
-
-
-<Center>
-
- 
-
-</Center>
-
-<BR>
-
-<Center>
-
-
-
-
-
-</a><BR><Center>
-
-  
-  
-
-  
-
-
-
-  
-
-
-
-</center>
-
-    
-
-  </h1><H1> <h1>
-
-</center>
-
-</font>
-
-
-
-
-
-</BODY>
+</body>
+</html>
 
